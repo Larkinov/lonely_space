@@ -1,0 +1,19 @@
+{
+    "name": "larkbu/lonely_space",
+    "type": "project",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "Larkbu\\LonelySpace\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Larkinov",
+            "email": "buyantolarkinov@gmail.com"
+        }
+    ],
+    "require": {
+        "nutgram/nutgram": "^3.20"
+    }
+}
