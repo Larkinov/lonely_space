@@ -1,5 +1,6 @@
 <?php
 
+use Larkbu\LonelySpace\Telegram\Command\Base\Help;
 use Larkbu\LonelySpace\Telegram\Command\Base\Start;
 use Larkbu\LonelySpace\Telegram\Command\Direction\Back;
 use Larkbu\LonelySpace\Telegram\Command\Direction\Down;
@@ -21,6 +22,9 @@ try {
     $bot->setRunningMode(Polling::class);
 
     $bot->registerCommand(Start::class);
+    $bot->registerCommand(Help::class);
+
+
     $bot->registerCommand(Up::class);
     $bot->registerCommand(Down::class);
     $bot->registerCommand(Left::class);

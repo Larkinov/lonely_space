@@ -3,6 +3,8 @@
 namespace Larkbu\LonelySpace\Telegram\Command\Base;
 
 use Larkbu\LonelySpace\Model\Ship\Ship;
+use Larkbu\LonelySpace\Telegram\Message\Text;
+use Larkbu\LonelySpace\Telegram\Message\TypeText;
 use SergiX44\Nutgram\Handlers\Type\Command;
 use SergiX44\Nutgram\Nutgram;
 
@@ -23,10 +25,10 @@ class Start extends Command
                 ]
             );
             $ship->save();
-            $bot->sendMessage('save ship!');
+            $bot->sendMessage(Text::getText(TypeText::START));
         } else {
             $newShip = Ship::findOneByColumn('id_player', $user->id);
-            $bot->sendMessage('ship already has - ' . json_encode($newShip->getIdPlayer()));
+            $bot->sendMessage(Text::getText(TypeText::START_HAS), ['id' => json_encode($newShip->getIdPlayer())]);
         }
     }
 }
