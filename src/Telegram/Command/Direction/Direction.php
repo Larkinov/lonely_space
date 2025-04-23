@@ -41,7 +41,7 @@ abstract class Direction extends Command
                 $bot->sendMessage(
                     Text::getText(
                         TypeText::DIRECTION,
-                        ['coordinates' => $ship->getCoordinates(), 'coordinatesUser' => $ship->getCoordinatesHome()]
+                        ['axis' => $ship->getAxis(), 'axisHome' => $ship->getAxisHome()]
                     ),
                 );
             } else

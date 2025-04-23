@@ -3,6 +3,8 @@
 namespace Larkbu\LonelySpace\Telegram\Message;
 
 use Larkbu\LonelySpace\Exception\Message\UnknownTypeText;
+use Larkbu\LonelySpace\Log\Log;
+use Larkbu\LonelySpace\Log\TypeLog;
 
 enum TypeText: string
 {
@@ -27,7 +29,7 @@ class Text
             case TypeText::NOT_FOUND_SHIP:
                 return "У вас еще пока нет космического корабля. Вы можете создать его через команду '/start'";
             case TypeText::DIRECTION:
-                return "Корабль прибыл в место назначения. Наши новые координаты: $params[coordinatesUser]\nКоординаты по Вселенной: $params[coordinates]";
+                return "Корабль прибыл в место назначения. Наши новые координаты:\nx: " . $params['axisHome']['x'] . "\ny: " . $params['axisHome']['y'] . "\nz: " . $params['axisHome']['z'] . "\nКоординаты по Вселенной:\nx: " . $params['axis']['x'] . "\ny: " . $params['axis']['y'] . "\nz: " . $params['axis']['z'];
             case TypeText::HELP:
                 return "Описание помощи";
             default:

@@ -29,6 +29,11 @@ abstract class ICoordinates
         }
     }
 
+    public function getAxis(): array
+    {
+        return $this->axis;
+    }
+
     public function fly(string $direction, int $step = 1): void
     {
 

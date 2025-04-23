@@ -38,6 +38,10 @@ class Ship extends ActiveRecordEntity
         return $this->coordinates;
     }
 
+    public function getAxis(): array {
+        return (new Coordinates($this->coordinates))->getAxis();
+    }
+
     public function setCoordinates(string $coordinates): void
     {
         $objectCoordinates = new Coordinates($coordinates);
@@ -47,6 +51,10 @@ class Ship extends ActiveRecordEntity
     public function getCoordinatesHome(): string
     {
         return $this->coordinatesHome;
+    }
+
+    public function getAxisHome(): array {
+        return (new CoordinatesHome($this->coordinatesHome))->getAxis();
     }
 
     public function setCoordinatesHome(string $coordinatesHome): void
