@@ -8,7 +8,7 @@ use Larkbu\LonelySpace\Telegram\Message\Text;
 use Larkbu\LonelySpace\Telegram\Message\TypeText;
 use Larkbu\LonelySpace\Log\Log;
 use Larkbu\LonelySpace\Log\TypeLog;
-use SergiX44\Nutgram\Handlers\Type\Command;
+use Larkbu\LonelySpace\Telegram\Command\ICommand;
 use SergiX44\Nutgram\Nutgram;
 
 enum TypeDirection: string
@@ -21,31 +21,20 @@ enum TypeDirection: string
     case Right = 'right';
 }
 
-abstract class Direction extends Command
+abstract class Direction extends ICommand
 {
     protected string $command;
 
-    public function handle(Nutgram $bot): void
+    protected function runCommand(Nutgram $bot, Ship $ship, array $params = []): void
     {
-        Log::writeString(TypeLog::COMMAND, "init $this->command");
+        $ship->fly($this->command);
+        $ship->save();
 
-        $user = $bot->user();
-        if (empty(Ship::findOneByColumn('id_player', $user->id))) {
-            $bot->sendMessage(Text::getText(TypeText::NOT_FOUND_SHIP));
-        } else {
-            $ship = Ship::findOneByColumn('id_player', $user->id);
-            if ($ship !== null) {
-                $ship->fly($this->command);
-                $ship->save();
-
-                $bot->sendMessage(
-                    Text::getText(
-                        TypeText::DIRECTION,
-                        ['axis' => $ship->getAxis(), 'axisHome' => $ship->getAxisHome()]
-                    ),
-                );
-            } else
-                throw new NotFoundShip('ship not found in DB');
-        }
+        $bot->sendMessage(
+            Text::getText(
+                TypeText::DIRECTION,
+                ['axis' => $ship->getAxis(), 'axisHome' => $ship->getAxisHome()]
+            ),
+        );
     }
 }

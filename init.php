@@ -1,5 +1,7 @@
 <?php
 
+use Larkbu\LonelySpace\Log\Log;
+use Larkbu\LonelySpace\Log\TypeLog;
 use Larkbu\LonelySpace\Telegram\Command\Base\Help;
 use Larkbu\LonelySpace\Telegram\Command\Base\Start;
 use Larkbu\LonelySpace\Telegram\Command\Direction\Back;
@@ -34,7 +36,9 @@ try {
 
     $bot->run();
 } catch (\Larkbu\LonelySpace\Exception\DbException $th) {
+    Log::writeString(TypeLog::ERROR, $th->getMessage() . ';file - ' . $th->getFile() . ';line - ' . $th->getLine());
     var_dump($th);
 } catch (\Throwable $th) {
+    Log::writeString(TypeLog::ERROR, $th->getMessage() . ';file - ' . $th->getFile() . ';line - ' . $th->getLine());
     var_dump($th);
 }

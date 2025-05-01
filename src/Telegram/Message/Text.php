@@ -25,7 +25,7 @@ class Text
             case TypeText::START:
                 return "Мы создали вам космический корабль!";
             case TypeText::START_HAS:
-                return "У вас уже есть космический корабль под номером - $params[id]";
+                return "У вас уже есть космический корабль под номером - ".$params['id'];
             case TypeText::NOT_FOUND_SHIP:
                 return "У вас еще пока нет космического корабля. Вы можете создать его через команду '/start'";
             case TypeText::DIRECTION:

@@ -28,7 +28,7 @@ class Start extends Command
             $bot->sendMessage(Text::getText(TypeText::START));
         } else {
             $newShip = Ship::findOneByColumn('id_player', $user->id);
-            $bot->sendMessage(Text::getText(TypeText::START_HAS), ['id' => json_encode($newShip->getIdPlayer())]);
+            $bot->sendMessage(Text::getText(TypeText::START_HAS, ['id' => $newShip->getIdPlayer()]));
         }
     }
 }
